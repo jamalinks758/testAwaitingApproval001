@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Financial Advisor | Secure Your Future</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --blue: #056fb3;
+            --green: #7bab2d;
+            --dark: #272b2d;
+            --light: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--dark);
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* DARK MODE OVERRIDES */
+        .dark-mode {
+            background: #121212;
+            color: #e0e0e0;
+        }
+        .dark-mode .card, .dark-mode .bg-light {
+            background: #1e1e1e !important;
+            color: white;
+            border: 1px solid #333;
+        }
+        .dark-mode .navbar { background: #000; }
+        .dark-mode .footer { background: #000; }
+
+        /* NAVBAR */
+   
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(rgba(5, 111, 179, 0.8), rgba(39, 43, 45, 0.85)),
+                        url('images/pillars.png') center/cover no-repeat;
+            color: white;
+            padding: 140px 20px;
+            text-align: center;
+            clip-path: ellipse(150% 100% at 50% 0%);
+        }
+
+        /* CARDS & BUTTONS */
+    
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        .btn-main {
+            background: var(--green);
+            color: white;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: bold;
+            border: none;
+            transition: 0.3s;
+        }
+        .btn-main:hover {
+            background: var(--blue);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* FLOATING ACTION BUTTONS (FAB) */
+        .fab-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 9999;
+        }
+        .fab {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            
+            transition: 0.3s;
+        }
+        .fab-whatsapp { background: #25D366; }
+        .fab-top { background: var(--blue); }
+        .fab-dark { background: #333; }
+        .fab:hover { transform: scale(1.1); color: white; }
+
+        /* LISTS */
+        .check-list p::before {
+            content: "✓";
+            color: var(--green);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .section-padding { padding: 80px 0; }
+        
+        /* GLASSMORPHISM CORE */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+}
+
+/* DARK MODE GLASS */
+.dark-mode .glass-panel {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* APPLYING TO COMPONENTS */
+.navbar {
+    background: rgba(5, 111, 179, 0.8) !important; /* Blue shade with transparency */
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+.dark-mode .card {
+    background: rgba(40, 40, 40, 0.6);
+}
+
+#leadForm {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* FLOATING BUTTONS EVOLUTION */
+.fab {
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* BLOB CONTAINER */
+.blob-c {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: #f8f9fa; /* Light mode base */
+    transition: 0.5s;
+}
+
+.dark-mode .blob-c {
+    background: #121212; /* Dark mode base */
+}
+
+/* INDIVIDUAL BLOBS */
+.shape-blob {
+    background: var(--blue);
+    height: 400px;
+    width: 400px;
+    border-radius: 40% 50% 30% 40%;
+    position: absolute;
+    filter: blur(80px);
+    opacity: 0.4;
+    animation: move 25s infinite alternate;
+}
+
+.shape-blob.one {
+    background: var(--green);
+    height: 300px;
+    width: 300px;
+    right: -5%;
+    top: 10%;
+    animation: move 20s infinite alternate-reverse;
+}
+
+.shape-blob.two {
+    background: var(--blue);
+    height: 350px;
+    width: 350px;
+    left: 10%;
+    bottom: -10%;
+    animation: move 30s infinite alternate;
+}
+
+@keyframes move {
+    from { transform: translate(0, 0) rotate(0deg); }
+    to { transform: translate(100px, 100px) rotate(360deg); }
+}
+
+/* ENHANCED GLASSMORPHISM */
+.card, #leadForm, .navbar {
+    background: rgba(255, 255, 255, 0.4) !important;
+    backdrop-filter: blur(15px) saturate(150%);
+    -webkit-backdrop-filter: blur(15px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .card, .dark-mode #leadForm {
+    background: rgba(39, 43, 45, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* BUTTON GLOW */
+.btn-main {
+    box-shadow: 0 4px 15px rgba(123, 171, 45, 0.3);
+}
+
+.btn-main:hover {
+    box-shadow: 0 8px 25px rgba(5, 111, 179, 0.4);
+}
+
+
+    </style>
+</head>
+<body>
+
+<div class="blob-c">
+    <div class="shape-blob"></div>
+    <div class="shape-blob one"></div>
+    <div class="shape-blob two"></div>
+</div>
+
+
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand text-primary fw-bold" href="#">ADVISOR NAME</a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link text-primary" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link text-primary" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link text-primary" href="#testimonials">Reviews</a></li>
+                <li class="nav-item"><a class="nav-link text-primary" href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="mt-2 btn btn-light ms-lg-3 rounded-pill fw-bold text-primary">Get Help Now</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero d-flex align-items-center">
+    <div class="container" data-aos="zoom-in">
+        <img src="images/logo.png" class="img-fluid mx-auto d-block rounded-circle shadow-lg mb-4" style="width: 150px;" alt="logo">
+        <h1 class="display-4 fw-bold">Is your insurance really enough?</h1>
+        <p class="lead mb-4">Bridging the gap between your current coverage and complete peace of mind.</p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <span class="badge bg-green p-2"><i class="bi bi-shield-check"></i> Protect Priorities</span>
+            <span class="badge bg-green p-2"><i class="bi bi-graph-up-arrow"></i> Secure Future</span>
+        </div>
+        <a href="#contact" class="btn btn-main mt-4 btn-lg">Get a Free Review</a>
+    </div>
+</section>
+
+<section class="section-padding text-center">
+    <div class="container">
+        <h2 class="fw-bold mb-5" data-aos="fade-up">Does this sound like you?</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-start check-list" data-aos="fade-right">
+                <p class="h5 mb-3">Paying too much for insurance premiums</p>
+                <p class="h5 mb-3">Unsure if your family is properly covered</p>
+                <p class="h5 mb-3">Confused by complex policy fine print</p>
+                <p class="h5 mb-3">No dedicated agent to guide you through claims</p>
+            </div>
+        </div>
+        <a href="#contact" class="btn btn-main mt-5" data-aos="fade-up">Let's Fix This Now</a>
+    </div>
+</section>
+
+<section id="about" class="section-padding bg-light">
+    <div class="container text-center">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4" data-aos="fade-right">
+                <h2 class="fw-bold">Meet Your Advisor</h2>
+                <h5 class="text-primary mb-4">12+ Years of Financial Excellence</h5>
+                <p>Focused on education, literacy, and mentorship, I help individuals and groups navigate the complexities of insurance with ease.</p>
+                <div class="row g-2 mt-4 text-start">
+                    <div class="col-6"><i class="bi bi-check2-circle text-success"></i> Life & Pensions</div>
+                    <div class="col-6"><i class="bi bi-check2-circle text-success"></i> Group Insurance</div>
+                    <div class="col-6"><i class="bi bi-check2-circle text-success"></i> Motor Insurance</div>
+                    <div class="col-6"><i class="bi bi-check2-circle text-success"></i> Health Coverage</div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="p-5 bg-white rounded shadow-sm">
+                    <i class="bi bi-person-badge display-1 text-primary"></i>
+                    <p class="mt-3 italic">"My mission is to ensure no family is left vulnerable due to a lack of information."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="section-padding">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-2">How I Help You</h2>
+        <p class="text-muted mb-5">Professional services designed for your security.</p>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card p-4">
+                    <i class="bi bi-search display-5 text-primary mb-3"></i>
+                    <h5>Policy Reviews</h5>
+                    <p>We analyze your current plans to find hidden gaps and cut unnecessary waste.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="card p-4">
+                    <i class="bi bi-currency-dollar display-5 text-success mb-3"></i>
+                    <h5>Better Rates</h5>
+                    <p>Access competitive pricing to pay less for significantly better protection.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="card p-4">
+                    <i class="bi bi-headset display-5 text-primary mb-3"></i>
+                    <h5>Claims Support</h5>
+                    <p>Expert guidance when it matters most, ensuring you get what you're owed.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="testimonials" class="section-padding bg-light">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-5">What My Clients Say</h2>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="flip-left">
+                <div class="card p-4">
+                    <div class="text-warning mb-2">★★★★★</div>
+                    <p>"I was overpaying for years. Now I have better coverage at a lower cost."</p>
+                    <small class="fw-bold">- Happy Client</small>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="flip-left" data-aos-delay="200">
+                <div class="card p-4">
+                    <div class="text-warning mb-2">★★★★★</div>
+                    <p>"Everything was explained clearly. I finally understand my policy details."</p>
+                    <small class="fw-bold">- Business Owner</small>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="flip-left" data-aos-delay="400">
+                <div class="card p-4">
+                    <div class="text-warning mb-2">★★★★★</div>
+                    <p>"Fast, professional, and actually cares about your specific family situation."</p>
+                    <small class="fw-bold">- Family Leader</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding text-center">
+    <div class="container">
+        <h2 class="fw-bold mb-5" data-aos="fade-up">Your Path to Security</h2>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                <div class="glass-panel p-4">
+                    <div class="display-6 fw-bold text-primary mb-2">01</div>
+                    <h5>Request Review</h5>
+                    <p class="small">Fill out the 30-second form below.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                <div class="glass-panel p-4">
+                    <div class="display-6 fw-bold text-success mb-2">02</div>
+                    <h5>Expert Analysis</h5>
+                    <p class="small">We audit your current coverage for gaps and waste.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                <div class="glass-panel p-4">
+                    <div class="display-6 fw-bold text-primary mb-2">03</div>
+                    <h5>Total Peace of Mind</h5>
+                    <p class="small">Enjoy better protection and often, lower monthly costs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="contact" class="section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center" data-aos="fade-up">
+                <h2 class="fw-bold">Get Your Free Review</h2>
+                <p class="mb-4 text-muted">No obligation. 100% confidential and free.</p>
+                <form id="leadForm" class="text-start shadow p-4 rounded bg-white">
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" id="name" class="form-control rounded-pill" placeholder="Your Full Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Phone</label>
+                        <input type="tel" id="phone" class="form-control rounded-pill" placeholder="Your Phone Number" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Needed Service</label>
+                        <select id="need" class="form-select rounded-pill">
+                            <option>Life Insurance</option>
+                            <option>Health Insurance</option>
+                            <option>Motor Insurance</option>
+                            <option>Group Insurance</option>
+                            <option>General Advice</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-main w-100">Claim My Free Review</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer bg-dark py-4 text-center">
+    <div class="container text-white">
+        <p>© 2026 Financial Advisor. All rights reserved.</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+        </div>
+    </div>
+</footer>
+
+<div class="fab-container">
+    <button onclick="toggleDarkMode()" class="fab fab-dark" title="Toggle Dark Mode">
+        <i class="bi bi-moon-stars" id="darkIcon"></i>
+    </button>
+    <a href="https://wa.me/1XXXXXXXXXX" class="fab fab-whatsapp" target="_blank" title="WhatsApp Us">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+    <button onclick="scrollToTop()" class="fab fab-top" title="Back to Top">
+        <i class="bi bi-arrow-up-short"></i>
+    </button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // Initialize Animations
+    AOS.init({ duration: 800, once: true });
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleDarkMode() {
+        const body = document.body;
+        const icon = document.getElementById("darkIcon");
+        body.classList.toggle("dark-mode");
+        
+        const isDark = body.classList.contains("dark-mode");
+        localStorage.setItem("darkMode", isDark);
+        
+        icon.className = isDark ? "bi bi-sun" : "bi bi-moon-stars";
+    }
+
+    // Persist Dark Mode
+    if(localStorage.getItem("darkMode") === "true"){
+        document.body.classList.add("dark-mode");
+        document.getElementById("darkIcon").className = "bi bi-sun";
+    }
+
+    /* WhatsApp Form Integration */
+    document.getElementById("leadForm").addEventListener("submit", function(e){
+        e.preventDefault();
+        let name = document.getElementById("name").value;
+        let phone = document.getElementById("phone").value;
+        let need = document.getElementById("need").value;
+        let message = `Hello! My name is ${name}. I'm interested in a free review for ${need}. Please contact me at ${phone}.`;
+        let whatsappURL = `https://wa.me/1XXXXXXXXXX?text=${encodeURIComponent(message)}`;
+        window.open(whatsappURL, "_blank");
+    });
+</script>
+</body>
+</html>
